@@ -21,5 +21,5 @@ e -k(x-x0 )
 Knowing the intervals at which we are going to test values for our parameters, the process of optimization consists in calculating the mean quadratic error (RMSE) for each of the combinations of the parameters **k** and **x0** (**L** is calculated at the beginning and is already fixed). And we will keep the combination of parameters with the smallest mean quadratic error.
 
 ### Folders
-**src** - Where the main code and functions are stored
-**notebooks** Where a jupyter notebook was used for the first exploratory exercise
+- **src** - Where the main code and functions are stored
+- **notebooks** Where a jupyter notebook was used for the first exploratory exercise
