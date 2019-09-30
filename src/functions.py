@@ -93,9 +93,9 @@ def to_fit(wind_mod_pred, L, params, mse_err, mae_err, rmse_err):
     mse_output = (int(np.amin(mse_err)))/100
     mae_output = (int(np.amin(mae_err)))/100
     
-    wind_mod_pred_rmse = [],
-    wind_mod_pred_mse = [],
-    wind_mod_pred_mae = [],
+    wind_mod_pred_rmse = []
+    wind_mod_pred_mse = []
+    wind_mod_pred_mae = []
 
 
     for x in wind_mod_pred:
