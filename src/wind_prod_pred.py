@@ -1,10 +1,6 @@
-import numpy as np
-import pandas as pd
-import math
 from src.functions import *
 import warnings
 warnings.filterwarnings('ignore')
-
 
 path = '20190910.txt'
 
