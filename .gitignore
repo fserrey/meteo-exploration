@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+*.pdf
 
 # Distribution / packaging
 .Python
@@ -102,3 +103,5 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+/home/slimbook/git-repos/meteo-exploration/
