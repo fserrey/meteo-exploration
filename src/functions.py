@@ -6,6 +6,7 @@ warnings.filterwarnings('ignore')
 
 
 def data_loading(path):
+    """ Data loading from directory path """
     data = pd.read_fwf(path, parse_dates=['observaciones'])
     split = data.loc[data['observaciones'] == 'predicciones'].index.values.astype(int)[0]
     df_observation = data[:split]
@@ -43,6 +44,7 @@ def mae(actual: np.ndarray, predicted: np.ndarray):
 
 
 def to_train(wind_mod, wind_mod_pred, L, k, x0):
+    """ Train function that gives best params for given data and MAE, MSE and RMSE errors """
     result = []
     params = []
     mse_err = []
@@ -73,13 +75,7 @@ def to_train(wind_mod, wind_mod_pred, L, k, x0):
     return params, mse_err, mae_err, rmse_err
 
 def to_fit(wind_mod_pred, L, params, mse_err, mae_err, rmse_err):
-    print(rmse_err)
-    print(params)
-    print(int(np.argmin(rmse_err)))
-    print(params[int(np.argmin(rmse_err))])
-    print(params[0])
-
-    print(params[int(np.argmin(rmse_err))][0])
+    """ Fitting function that uses best params for function in order to predict what is the power expected for a given wind module prediction """
     rmse_best_k = params[int(np.argmin(rmse_err))][0]
     rmse_best_x0 = params[(int(np.argmin(rmse_err)))][1]
 
@@ -110,4 +106,3 @@ def to_fit(wind_mod_pred, L, params, mse_err, mae_err, rmse_err):
     print(L , rmse_best_k, rmse_best_x0)
     print(mae_output, rmse_output)
     return wind_mod_pred_rmse
-
