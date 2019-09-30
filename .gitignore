@@ -103,5 +103,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-
-/home/slimbook/git-repos/meteo-exploration/documentation
+/meteo-exploration/documentation
