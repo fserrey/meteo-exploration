@@ -42,9 +42,9 @@ def mae(actual: np.ndarray, predicted: np.ndarray):
     return np.mean(np.abs(_error(actual, predicted)))
 
 
-def to_train(wind_mod, L, k, x0):   
+def to_train(wind_mod, wind_mod_pred, L, k, x0):
     result = []
-    parameters = []
+    params = []
     mse_err = []
     mae_err = []
     rmse_err = []
@@ -54,11 +54,11 @@ def to_train(wind_mod, L, k, x0):
 
                 try:
                     func = L/(1-math.exp(-(i)*((x)-(s))))
-                    params = [i, s]
+                    params_ = [i, s]
 
                     if func > 0: # He puesto esta condición porque previamente me salían valores negativos
                         result.append(func)
-                        parameters.append(params)
+                        params.append(params_)
 
                         # Defino dos arrays para cálculo de errores
                         actual_array = np.asarray(func, dtype=np.float32)
@@ -70,25 +70,32 @@ def to_train(wind_mod, L, k, x0):
 
                 except ZeroDivisionError:
                     continue
-    return parameters, mse_err, mae_err, rmse_err
+    return params, mse_err, mae_err, rmse_err
 
-def to_fit(wind_mod_pred, params, mse_err, mae_err, rmse_err):    
-    rmse_best_k = parameters[(int(np.argmin(rmse_err)))][0]
-    rmse_best_x0 = parameters[(int(np.argmin(rmse_err)))][1]
+def to_fit(wind_mod_pred, L, params, mse_err, mae_err, rmse_err):
+    print(rmse_err)
+    print(params)
+    print(int(np.argmin(rmse_err)))
+    print(params[int(np.argmin(rmse_err))])
+    print(params[0])
 
-    mse_best_k = parameters[(int(np.argmin(mse_err)))][0]
-    mse_best_x0 = parameters[(int(np.argmin(mse_err)))][1]
+    print(params[int(np.argmin(rmse_err))][0])
+    rmse_best_k = params[int(np.argmin(rmse_err))][0]
+    rmse_best_x0 = params[(int(np.argmin(rmse_err)))][1]
 
-    mae_best_k = parameters[(int(np.argmin(mae_err)))][0]
-    mae_best_x0 = parameters[(int(np.argmin(mae_err)))][1]
+    mse_best_k = params[(int(np.argmin(mse_err)))][0]
+    mse_best_x0 = params[(int(np.argmin(mse_err)))][1]
+
+    mae_best_k = params[(int(np.argmin(mae_err)))][0]
+    mae_best_x0 = params[(int(np.argmin(mae_err)))][1]
 
     rmse_output = (int(np.amin(rmse_err)))/100
     mse_output = (int(np.amin(mse_err)))/100
     mae_output = (int(np.amin(mae_err)))/100
     
-    wind_mod_pred_rmse = []
-    wind_mod_pred_mse = []
-    wind_mod_pred_mae = []
+    wind_mod_pred_rmse = [],
+    wind_mod_pred_mse = [],
+    wind_mod_pred_mae = [],
 
 
     for x in wind_mod_pred:
